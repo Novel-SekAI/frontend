@@ -9,7 +9,11 @@ import { useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { loginSchema, type Login } from "../model/login-schema";
 
-export function LoginForm() {
+type LoginFormProps = {
+  onSwitchToSignup: () => void;
+};
+
+export function LoginForm({ onSwitchToSignup }: LoginFormProps) {
   const [showPassword, setShowPassword] = useState(false);
   const {
     register,
@@ -17,7 +21,7 @@ export function LoginForm() {
     formState: { errors },
   } = useForm<Login>({ resolver: zodResolver(loginSchema) });
 
-  const onSubmit: SubmitHandler<Login> = (values, e) => {
+  const onSubmit: SubmitHandler<Login> = () => {
     // TODO
   };
 
@@ -34,7 +38,7 @@ export function LoginForm() {
           소설의 세계관을, 함께 지어요
         </p>
       </div>
-      <Card className="flex h-100 w-100 flex-col items-start justify-center gap-4 p-7">
+      <Card className="flex w-100 flex-col items-start gap-4 p-7">
         <h1 className="text-[22px] font-bold">로그인</h1>
         <form
           noValidate
@@ -48,7 +52,9 @@ export function LoginForm() {
             {...register("email")}
             className="h-10 w-full"
           />
-          <p>{errors.email?.message}</p>
+          <p role="alert" className="text-destructive text-[13px]">
+            {errors.email?.message}
+          </p>
           <Label className="text-[13px]">비밀번호</Label>
           <div className="relative h-10 w-full">
             <Input
@@ -63,32 +69,30 @@ export function LoginForm() {
               size="icon-sm"
               aria-label={showPassword ? "비밀번호 숨기기" : "비밀번호 표시"}
               onClick={() => setShowPassword((previous) => !previous)}
-              className="absolute top-1/2 right-1 -translate-y-1/2 cursor-pointer"
+              className="absolute top-1/2 right-1 -translate-y-1/2 cursor-pointer hover:bg-transparent hover:text-inherit dark:hover:bg-transparent"
             >
               {showPassword ? <Eye /> : <EyeOff />}
             </Button>
           </div>
-          <p>{errors.password?.message}</p>
+          <p role="alert" className="text-destructive text-[13px]">
+            {errors.password?.message}
+          </p>
           <div>
-            <input
-              color="accent"
-              type="checkbox"
-              name=""
-              id=""
-              className="mb-2"
-            />
+            <input color="accent" type="checkbox" className="mb-2" />
             <span className="ml-2 text-[15px]">로그인 상태 유지</span>
           </div>
-          <Button className="bg-accent hover:bg-accent-foreground h-12 w-full cursor-pointer">
-            로그인
-          </Button>
+          <Button className="h-12 w-full cursor-pointer">로그인</Button>
         </form>
         <div className="self-center">
           <p className="text-[13px] text-neutral-500">
-            아직 계정이 없으신가요?
-            <span className="text-accent cursor-pointer font-bold hover:underline">
+            아직 계정이 없으신가요?{" "}
+            <button
+              type="button"
+              onClick={onSwitchToSignup}
+              className="text-accent cursor-pointer font-bold hover:underline"
+            >
               회원가입
-            </span>
+            </button>
           </p>
         </div>
       </Card>

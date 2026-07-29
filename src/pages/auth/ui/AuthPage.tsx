@@ -7,13 +7,11 @@ export function AuthPage() {
 
   return (
     <main className="h-full">
-      {isLogin ? <LoginForm /> : <SignupForm />}
-      {/* <button
-        type="button"
-        onClick={() => setMode(isLogin ? "signup" : "login")}
-      >
-        {isLogin ? "회원가입" : "로그인"}
-      </button> */}
+      {isLogin ? (
+        <LoginForm onSwitchToSignup={() => setMode("signup")} />
+      ) : (
+        <SignupForm onSwitchToLogin={() => setMode("login")} />
+      )}
     </main>
   );
 }
