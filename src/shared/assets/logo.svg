@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title description">
+  <title id="title">세계관 AI 심볼 초안</title>
+  <desc id="description">펼친 책과 세 개의 관계 노드를 결합한 심볼</desc>
+  <g fill="none" stroke="#221C16" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5">
+    <path d="M8 17.5c8.8-1.8 17 .6 24 7.1v29c-7-6.5-15.2-8.9-24-7.1z"></path>
+    <path d="M56 17.5c-8.8-1.8-17 .6-24 7.1v29c7-6.5 15.2-8.9 24-7.1z"></path>
+  </g>
+  <g fill="none" stroke="#764FD6" stroke-linecap="round" stroke-width="2.75">
+    <path d="m18.5 30 13.5 8 13.5-10"></path>
+  </g>
+  <g fill="#764FD6">
+    <circle cx="18.5" cy="30" r="4"></circle>
+    <circle cx="32" cy="38" r="4"></circle>
+    <circle cx="45.5" cy="28" r="4"></circle>
+  </g>
+</svg>
