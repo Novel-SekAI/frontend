@@ -4,16 +4,13 @@ import { Card } from "@/shared/ui/card";
 import { Input } from "@/shared/ui/input";
 import { Label } from "@/shared/ui/label";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Link } from "@tanstack/react-router";
 import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { loginSchema, type Login } from "../model/login-schema";
 
-type LoginFormProps = {
-  onSwitchToSignup: () => void;
-};
-
-export function LoginForm({ onSwitchToSignup }: LoginFormProps) {
+export function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
   const {
     register,
@@ -86,13 +83,12 @@ export function LoginForm({ onSwitchToSignup }: LoginFormProps) {
         <div className="self-center">
           <p className="text-[13px] text-neutral-500">
             아직 계정이 없으신가요?{" "}
-            <button
-              type="button"
-              onClick={onSwitchToSignup}
+            <Link
+              to="/signup"
               className="text-accent cursor-pointer font-bold hover:underline"
             >
               회원가입
-            </button>
+            </Link>
           </p>
         </div>
       </Card>

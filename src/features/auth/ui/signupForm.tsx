@@ -4,14 +4,11 @@ import { Card } from "@/shared/ui/card";
 import { Input } from "@/shared/ui/input";
 import { Label } from "@/shared/ui/label";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Link } from "@tanstack/react-router";
 import { useForm } from "react-hook-form";
 import { signupSchema, type Signup } from "../model/signup-schema";
 
-type SignupFormProps = {
-  onSwitchToLogin: () => void;
-};
-
-export function SignupForm({ onSwitchToLogin }: SignupFormProps) {
+export function SignupForm() {
   const {
     register,
     handleSubmit,
@@ -92,13 +89,12 @@ export function SignupForm({ onSwitchToLogin }: SignupFormProps) {
         <div className="self-center">
           <p className="text-[13px] text-neutral-500">
             이미 계정이 있으신가요?{" "}
-            <button
-              type="button"
-              onClick={onSwitchToLogin}
+            <Link
+              to="/login"
               className="text-accent cursor-pointer font-bold hover:underline"
             >
               로그인
-            </button>
+            </Link>
           </p>
         </div>
       </Card>
