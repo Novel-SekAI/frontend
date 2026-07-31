@@ -5,10 +5,15 @@ import { Input } from "@/shared/ui/input";
 import { Label } from "@/shared/ui/label";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link } from "@tanstack/react-router";
+import { Eye, EyeOff } from "lucide-react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { signupSchema, type Signup } from "../model/signup-schema";
 
 export function SignupForm() {
+  const [showPassword, setShowPassword] = useState(false);
+  const [showCorrectPassword, setShowCorrectPassword] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -62,23 +67,49 @@ export function SignupForm() {
           </p>
 
           <Label className="text-[13px]">비밀번호</Label>
-          <Input
-            type="password"
-            placeholder="비밀번호"
-            {...register("password")}
-            className="w-full pr-10"
-          />
+          <div className="relative h-10 w-full">
+            <Input
+              type={showPassword ? "text" : "password"}
+              placeholder="비밀번호"
+              {...register("password")}
+              className="w-full pr-10"
+            />
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon-sm"
+              aria-label={showPassword ? "비밀번호 숨기기" : "비밀번호 표시"}
+              onClick={() => setShowPassword((previous) => !previous)}
+              className="absolute top-1/2 right-1 -translate-y-1/2 cursor-pointer hover:bg-transparent hover:text-inherit dark:hover:bg-transparent"
+            >
+              {showPassword ? <Eye /> : <EyeOff />}
+            </Button>
+          </div>
           <p role="alert" className="text-destructive text-[13px]">
             {errors.password?.message}
           </p>
 
           <Label className="text-[13px]">비밀번호 확인</Label>
-          <Input
-            type="password"
-            placeholder="비밀번호 확인"
-            {...register("correctPassword")}
-            className="w-full pr-10"
-          />
+          <div className="relative h-10 w-full">
+            <Input
+              type={showCorrectPassword ? "text" : "password"}
+              placeholder="비밀번호 확인"
+              {...register("correctPassword")}
+              className="w-full pr-10"
+            />
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon-sm"
+              aria-label={
+                showCorrectPassword ? "비밀번호 숨기기" : "비밀번호 표시"
+              }
+              onClick={() => setShowCorrectPassword((previous) => !previous)}
+              className="absolute top-1/2 right-1 -translate-y-1/2 cursor-pointer hover:bg-transparent hover:text-inherit dark:hover:bg-transparent"
+            >
+              {showCorrectPassword ? <Eye /> : <EyeOff />}
+            </Button>
+          </div>
           <p role="alert" className="text-destructive text-[13px]">
             {errors.correctPassword?.message}
           </p>
